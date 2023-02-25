@@ -11,8 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @DataJpaTest
 class TiketRepositoryTest {
 
-	private static final String DEVELOPE_NAME = "Desenvolvedor Sagaz";
-	private static final String DEVELOPE_EMAIL = "desenvolvedor.sagaz@empresa.mail";
+	private static final String DEVELOPE_NAME = "Luciano Lucas";
+	private static final String DEVELOPE_EMAIL = "luciano@lucas.mail";
+	
+	// given: dados do teste / cenario de teste
 	
 	private static final Ticket GIVEN_TICKET__INITIAL = new Ticket(
 			"Criar relatório mensal de vendas",
@@ -30,17 +32,16 @@ class TiketRepositoryTest {
 	@Test
 	void itShouldCheckIfOwnerEmailExists() {
 		
-		// Given : cENÁRIO DE TESTE
-		
-		underTest.save(GIVEN_TICKET__INITIAL);
+		underTest.save(GIVEN_TICKET__INITIAL); // salvando dados do given no banco
 
-		// When
+		// When : Ao executar
 		
-		var response = underTest.ownerEmailExists(DEVELOPE_EMAIL);
+		var response = underTest.ownerEmailExists(DEVELOPE_EMAIL); // verifica se existe email
+									   // deve encontrar 1 email	
 		
 		// Then : Validação
 		
-		assertThat(response).isGreaterThan(0l); // Extamente 1 email.
+		assertThat(response).isGreaterThan(0l); // mais de zero email
 		
 		
 	}
